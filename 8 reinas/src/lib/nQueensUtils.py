@@ -35,3 +35,22 @@ def mutation(paths, mutationRate=0.1):
             index = np.random.randint(0, len(paths[0]), 2)
             paths[i][index[0]], paths[i][index[1]] = paths[i][index[1]], paths[i][index[0]]
     return paths
+
+def plotSolution(solucion, n):
+    fig = plt.figure(figsize=(n,n))
+    ax = fig.add_subplot(111)
+    ax.set_xlim(0,n)
+    ax.set_ylim(0,n)
+
+    for i in range(n):
+        for j in range(n):
+            if (i+j)%2==0:
+                ax.add_patch(plt.Rectangle((i,j),1,1,facecolor='black'))
+            else:
+                ax.add_patch(plt.Rectangle((i,j),1,1,facecolor='white'))
+
+    for i in range(n):
+        ax.add_patch(plt.Circle((i+.5,solucion[0][i]+.5),0.4,facecolor='firebrick'))
+
+    plt.savefig("../../graphs/chessBoard.png")
+    plt.show()
